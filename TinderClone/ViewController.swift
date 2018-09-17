@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import Parse
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var swiftLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let gesture = UIPanGestureRecognizer(target: self, action: <#T##Selector?#>
+        
     }
-
+    
+    
 
 }
 
