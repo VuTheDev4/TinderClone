@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2790" y="18"/>
+            <point key="canvasLocation" x="3169" y="-76"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="5sX-4G-MaS">
@@ -150,6 +150,7 @@
                         <outlet property="passwordTextField" destination="760-pS-Zfj" id="6AI-3i-cQQ"/>
                         <outlet property="usernameTextField" destination="wZW-EA-NeQ" id="XJw-w7-u60"/>
                         <segue destination="9jL-1A-IFN" kind="presentation" identifier="profileUpdateSegue" id="FLP-pS-Z6J"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toSwipingSegue" id="zrc-ac-vg3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbG-7s-BIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -273,10 +274,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfE-h8-rTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="19"/>
+            <point key="canvasLocation" x="1582" y="949"/>
         </scene>
     </scenes>
     <resources>
         <image name="user (1)" width="42.372413635253906" height="42.372413635253906"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="zrc-ac-vg3"/>
+    </inferredMetricsTieBreakers>
 </document>
