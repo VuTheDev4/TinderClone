@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9jL-1A-IFN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RZb-PA-4zB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -135,11 +135,12 @@
                         <outlet property="loginSignUpButton" destination="yLq-Tz-Ayg" id="tfJ-TS-DUi"/>
                         <outlet property="passwordTextField" destination="760-pS-Zfj" id="6AI-3i-cQQ"/>
                         <outlet property="usernameTextField" destination="wZW-EA-NeQ" id="XJw-w7-u60"/>
+                        <segue destination="9jL-1A-IFN" kind="presentation" identifier="profileUpdateSegue" id="FLP-pS-Z6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbG-7s-BIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1031" y="33"/>
+            <point key="canvasLocation" x="1159" y="33"/>
         </scene>
         <!--Update View Controller-->
         <scene sceneID="ZhQ-xt-i0o">
@@ -205,6 +206,12 @@
                                     <action selector="updateTapped:" destination="9jL-1A-IFN" eventType="touchUpInside" id="7Eo-dh-bwt"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWK-MG-RRk">
+                                <rect key="frame" x="168.5" y="585" width="38" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99158149959999997" green="0.0036381094250000001" blue="0.1937242746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Men" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYX-ip-1eh">
                                 <rect key="frame" x="119.5" y="494" width="33.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -224,12 +231,14 @@
                             <constraint firstItem="swF-yy-PMt" firstAttribute="leading" secondItem="c2f-b4-bRj" secondAttribute="trailing" constant="10" id="NNx-GO-dFE"/>
                             <constraint firstItem="RGH-2d-S9o" firstAttribute="centerX" secondItem="Axe-GW-VK5" secondAttribute="centerX" id="NiD-0m-RNc"/>
                             <constraint firstItem="dtc-9W-6tp" firstAttribute="top" secondItem="c2f-b4-bRj" secondAttribute="bottom" constant="8" id="ToU-Mc-Hld"/>
+                            <constraint firstItem="QWK-MG-RRk" firstAttribute="top" secondItem="PTW-7r-Llj" secondAttribute="bottom" constant="22" id="Uge-O9-dUA"/>
                             <constraint firstItem="c2f-b4-bRj" firstAttribute="leading" secondItem="2ii-Hh-huZ" secondAttribute="trailing" constant="10" id="Vn4-ve-6X2"/>
                             <constraint firstItem="yYX-ip-1eh" firstAttribute="centerY" secondItem="RGH-2d-S9o" secondAttribute="centerY" id="XPP-31-kC6"/>
                             <constraint firstItem="dtc-9W-6tp" firstAttribute="centerX" secondItem="Axe-GW-VK5" secondAttribute="centerX" id="XWR-Uw-Nx1"/>
                             <constraint firstItem="dJ9-dc-qO5" firstAttribute="centerY" secondItem="RGH-2d-S9o" secondAttribute="centerY" id="Z45-dW-n34"/>
                             <constraint firstItem="Umu-Bc-XpJ" firstAttribute="centerX" secondItem="Axe-GW-VK5" secondAttribute="centerX" id="Z6N-92-dDz"/>
                             <constraint firstItem="PTW-7r-Llj" firstAttribute="top" secondItem="RGH-2d-S9o" secondAttribute="bottom" constant="13" id="btd-Lf-U1x"/>
+                            <constraint firstItem="QWK-MG-RRk" firstAttribute="centerX" secondItem="Axe-GW-VK5" secondAttribute="centerX" id="eAY-pZ-wfR"/>
                             <constraint firstItem="Umu-Bc-XpJ" firstAttribute="top" secondItem="tDd-sh-2N1" secondAttribute="bottom" constant="24" id="grk-lL-2SL"/>
                             <constraint firstItem="RGH-2d-S9o" firstAttribute="top" secondItem="dtc-9W-6tp" secondAttribute="bottom" constant="8" id="jCz-Q8-t1J"/>
                             <constraint firstItem="tDd-sh-2N1" firstAttribute="leading" secondItem="9ts-hR-SNz" secondAttribute="leading" constant="50" id="mdj-wt-nal"/>
@@ -241,6 +250,7 @@
                         <viewLayoutGuide key="safeArea" id="9ts-hR-SNz"/>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="QWK-MG-RRk" id="Rr7-Eb-3dE"/>
                         <outlet property="interestedGenderSwitch" destination="RGH-2d-S9o" id="M82-zC-YIR"/>
                         <outlet property="profileImageView" destination="tDd-sh-2N1" id="D85-Aw-YcU"/>
                         <outlet property="userGenderSwitch" destination="c2f-b4-bRj" id="8gQ-Dq-dHS"/>
