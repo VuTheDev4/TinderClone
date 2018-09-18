@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F6925E99026F67E191501AB /* Pods_TinderClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB32DD2F7BAE0084E91BF1F /* Pods_TinderClone.framework */; };
+		EAD77CC52150845C00D60FB5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD77CC42150845C00D60FB5 /* LoginViewController.swift */; };
 		EAF25C4F21488D9500D94155 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF25C4E21488D9500D94155 /* AppDelegate.swift */; };
 		EAF25C5121488D9500D94155 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF25C5021488D9500D94155 /* ViewController.swift */; };
 		EAF25C5421488D9500D94155 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAF25C5221488D9500D94155 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 		71ED11B06298C9D7B3FE112C /* Pods-TinderClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinderClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TinderClone/Pods-TinderClone.debug.xcconfig"; sourceTree = "<group>"; };
 		74A392119E62277FB9D232A8 /* Pods-TinderClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinderClone.release.xcconfig"; path = "Pods/Target Support Files/Pods-TinderClone/Pods-TinderClone.release.xcconfig"; sourceTree = "<group>"; };
 		8EB32DD2F7BAE0084E91BF1F /* Pods_TinderClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinderClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAD77CC42150845C00D60FB5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EAF25C4B21488D9500D94155 /* TinderClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF25C4E21488D9500D94155 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAF25C5021488D9500D94155 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				EAF25C4E21488D9500D94155 /* AppDelegate.swift */,
 				EAF25C5021488D9500D94155 /* ViewController.swift */,
+				EAD77CC42150845C00D60FB5 /* LoginViewController.swift */,
 				EAF25C5221488D9500D94155 /* Main.storyboard */,
 				EAF25C5521488D9700D94155 /* Assets.xcassets */,
 				EAF25C5721488D9700D94155 /* LaunchScreen.storyboard */,
@@ -202,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD77CC52150845C00D60FB5 /* LoginViewController.swift in Sources */,
 				EAF25C5121488D9500D94155 /* ViewController.swift in Sources */,
 				EAF25C4F21488D9500D94155 /* AppDelegate.swift in Sources */,
 			);
