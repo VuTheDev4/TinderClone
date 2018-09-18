@@ -14,8 +14,8 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var userGenderSwitch: UISwitch!
     @IBOutlet weak var interestedGenderSwitch: UISwitch!
-    
     @IBOutlet weak var errorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +75,7 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
-        
+    
         present(imagePicker, animated: true, completion: nil)
     }
     

@@ -10,16 +10,17 @@ import UIKit
 import Parse
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var swiftLabel: UILabel!
+    
+    @IBOutlet weak var matchImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(wasDragged(gestureRecognizer:)))
-        swiftLabel.addGestureRecognizer(gesture)
+        matchImageView.addGestureRecognizer(gesture)
         
+        updateImage()
     }
     
     @IBAction func logOutTapped(_ sender: Any) {
@@ -29,9 +30,9 @@ class ViewController: UIViewController {
     
     @objc func wasDragged(gestureRecognizer: UIPanGestureRecognizer) {
         let labelPoint = gestureRecognizer.translation(in: view)
-        swiftLabel.center = CGPoint(x: view.bounds.width / 2 + labelPoint.x, y: view.bounds.height / 2 + labelPoint.y)
+        matchImageView.center = CGPoint(x: view.bounds.width / 2 + labelPoint.x, y: view.bounds.height / 2 + labelPoint.y)
         
-        let xFromCenter = view.bounds.width / 2 - swiftLabel.center.x
+        let xFromCenter = view.bounds.width / 2 - matchImageView.center.x
         
         var rotation = CGAffineTransform(rotationAngle: xFromCenter / 200)
         
@@ -39,14 +40,14 @@ class ViewController: UIViewController {
         
         var scaledAndRotated = rotation.scaledBy(x: scale, y: scale)
         
-        swiftLabel.transform = scaledAndRotated
+        matchImageView.transform = scaledAndRotated
         
         
         if gestureRecognizer.state == .ended {
-            if swiftLabel.center.x < (view.bounds.width / 2 - 100) {
+            if matchImageView.center.x < (view.bounds.width / 2 - 100) {
                 print("Not interested")
             }
-            if swiftLabel.center.x > (view.bounds.width / 2 + 100) {
+            if matchImageView.center.x > (view.bounds.width / 2 + 100) {
                 print("Interested")
             }
             
@@ -54,12 +55,39 @@ class ViewController: UIViewController {
             
             scaledAndRotated = rotation.scaledBy(x: 1, y: 1)
             
-            swiftLabel.transform = scaledAndRotated
-        
-            swiftLabel.center = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2)
+            matchImageView.transform = scaledAndRotated
+            
+            matchImageView.center = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2)
             
         }
     }
-
+    
+    func updateImage() {
+        if let query = PFUser.query() {
+            if let isInterestsedInWomen = PFUser.current()?["isInterestedInWomen"] {
+                query.whereKey("isFemale", equalTo: isInterestsedInWomen )
+            }
+            
+            if let isFemale = PFUser.current()?["isFemale"] {
+                query.whereKey("isInterestedInWomen", equalTo: isFemale )
+            }
+            
+            query.limit = 1
+            query.findObjectsInBackground { (objects, error) in
+                if let users = objects {
+                    for object in users {
+                        if let user = object as? PFUser {
+                            if let imageFile = user["photo"] as? PFFile {
+                                imageFile.getDataInBackground(block: { (data, error) in
+                                    if let imageData = data {
+                                        self.matchImageView.image = UIImage(data: imageData)
+                                    }
+                                })
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-

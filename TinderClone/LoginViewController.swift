@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 class LoginViewController: UIViewController {
-
+    
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         errorLabel.isHidden = true
     }
     
@@ -65,6 +65,13 @@ class LoginViewController: UIViewController {
                             self.errorLabel.text = errorMessage
                         } else {
                             print("Login Successful")
+                            
+                            if user? ["isFemale"] != nil {
+                                self.performSegue(withIdentifier: "loginToSwipingSegue", sender: nil)
+                            } else {
+                                self.performSegue(withIdentifier: "profileUpdateSegue", sender: nil)
+                            }
+                            
                             self.performSegue(withIdentifier: "profileUpdateSegue", sender: nil)
                         }
                     }
@@ -76,7 +83,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if PFUser.current() != nil {
-            self.performSegue(withIdentifier: "profileUpdateSegue", sender: nil)
+            
+            if PFUser.current()?["isFemale"] != nil {
+                self.performSegue(withIdentifier: "loginToSwipingSegue", sender: nil)
+            } else {
+                self.performSegue(withIdentifier: "profileUpdateSegue", sender: nil)
+            }
         }
     }
     
