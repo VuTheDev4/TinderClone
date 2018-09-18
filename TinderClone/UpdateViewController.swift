@@ -18,7 +18,7 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var errorLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         errorLabel.isHidden = true
         
         if let isFemale = PFUser.current()?["isFemale"] as? Bool {
@@ -40,6 +40,35 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    func createWomen() {
+        let imageUrls = ["https://tstotopix.files.wordpress.com/2014/01/lindsey_naegle.png","http://www.fanpop.com/images/polls/8619_4_full.jpg?v=1185157299","https://vignette.wikia.nocookie.net/simpsons/images/b/b0/Woman_resembling_Homer.png/revision/latest?cb=20141026204206","https://vignette.wikia.nocookie.net/doblaje/images/e/ee/Selma.png/revision/latest?cb=20131125003227&path-prefix=es","https://upload.wikimedia.org/wikipedia/en/7/76/Edna_Krabappel.png"]
+        
+        
+        var counter = 0
+        
+        for imageURL in imageUrls {
+            counter += 1
+            if let url = URL(string: imageURL) {
+                if let data = try? Data(contentsOf: url) {
+                    let imageFile = PFFile(name: "photo.png", data: data)
+                    let user = PFUser()
+                    user["photo"] = imageFile
+                    user.username = String(counter)
+                    user.password = "abc123"
+                    user["isFemale"] = true
+                    user["isInterestedInWomen"] = false
+                    
+                    user.signUpInBackground { (success, error) in
+                        if success {
+                            print("Women User Created")
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     @IBAction func updateImageTapped(_ sender: Any) {
         //Create Vars for Camera
         let imagePicker = UIImagePickerController()
@@ -53,7 +82,7 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profileImageView.image = image
-    }
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -64,7 +93,7 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         if let image = profileImageView.image {
             if let  imageData = UIImagePNGRepresentation(image){
-            PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData)
+                PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData)
                 PFUser.current()?.saveInBackground(block: { (success, error) in
                     if error != nil {
                         var errorMessage = "Update Failed - Try Again"
