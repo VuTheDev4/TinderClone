@@ -22,6 +22,11 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func logOutTapped(_ sender: Any) {
+        PFUser.logOut()
+        performSegue(withIdentifier: "logOutSegue", sender: nil)
+    }
+    
     @objc func wasDragged(gestureRecognizer: UIPanGestureRecognizer) {
         let labelPoint = gestureRecognizer.translation(in: view)
         swiftLabel.center = CGPoint(x: view.bounds.width / 2 + labelPoint.x, y: view.bounds.height / 2 + labelPoint.y)

@@ -25,7 +25,7 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
             userGenderSwitch.setOn(isFemale, animated: false)
         }
         
-        if let isInterestedInWomen = PFUser.current()?["isFemale"] as? Bool {
+        if let isInterestedInWomen = PFUser.current()?["isInterestedInWomen"] as? Bool {
             interestedGenderSwitch.setOn(isInterestedInWomen, animated: false)
         }
         
@@ -106,6 +106,7 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
                         self.errorLabel.text = errorMessage
                     } else {
                         print("Update Successful")
+                        self.performSegue(withIdentifier: "presentSwipeSegues", sender: nil)
                     }
                 })
             }
