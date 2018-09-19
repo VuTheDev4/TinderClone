@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var matchImageView: UIImageView!
     
+    var displayUserId = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -44,11 +46,25 @@ class ViewController: UIViewController {
         
         
         if gestureRecognizer.state == .ended {
+            
+            var acceptedOrRejected = ""
+            
             if matchImageView.center.x < (view.bounds.width / 2 - 100) {
                 print("Not interested")
+                acceptedOrRejected = "rejected"
             }
             if matchImageView.center.x > (view.bounds.width / 2 + 100) {
                 print("Interested")
+                acceptedOrRejected = "accepted"
+            }
+            
+            if acceptedOrRejected != "" && displayUserId != "" {
+                PFUser.current()?.addUniqueObject(displayUserId, forKey: acceptedOrRejected)
+                PFUser.current()?.saveInBackground(block: { (success, error) in
+                    if success {
+                        self.updateImage()
+                    }
+                })
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
@@ -69,8 +85,20 @@ class ViewController: UIViewController {
             }
             
             if let isFemale = PFUser.current()?["isFemale"] {
-                query.whereKey("isInterestedInWomen", equalTo: isFemale )
+               query.whereKey("isInterestedInWomen", equalTo: isFemale )
             }
+            
+            var ignoredUsers : [String] = []
+            
+            if let accepetedUsers = PFUser.current()?["accepted"] as? [String] {
+                ignoredUsers += accepetedUsers
+            }
+            
+            if let rejectedUsers = PFUser.current()?["rejected"] as? [String] {
+                ignoredUsers += rejectedUsers
+            }
+            
+            query.whereKey("objectId", notContainedIn: ignoredUsers)
             
             query.limit = 1
             query.findObjectsInBackground { (objects, error) in
@@ -81,6 +109,9 @@ class ViewController: UIViewController {
                                 imageFile.getDataInBackground(block: { (data, error) in
                                     if let imageData = data {
                                         self.matchImageView.image = UIImage(data: imageData)
+                                        if let objectId = object.objectId {
+                                             self.displayUserId = objectId
+                                        }
                                     }
                                 })
                             }
